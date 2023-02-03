@@ -1,0 +1,21 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "fsharp-demo", "fsharp-demo.fsproj", "{3CA38EB7-4B07-4A30-B4FB-BFBBD9805457}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_build", "_build", "{9070D9CB-862F-40F8-9665-9B529EC1B62A}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3CA38EB7-4B07-4A30-B4FB-BFBBD9805457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA38EB7-4B07-4A30-B4FB-BFBBD9805457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA38EB7-4B07-4A30-B4FB-BFBBD9805457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA38EB7-4B07-4A30-B4FB-BFBBD9805457}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
