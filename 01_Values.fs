@@ -17,12 +17,17 @@ let f() =
     let x = "hello"
     printfn $"{x}" // hello
 
+
+// -----------------------------------
+// arrays, lists, tuples
 let array = [|1;2;3|]
 let tuple = (1,2,"hello")
 
 // linked list
 let list = [1;2;3]
 
+
+// -----------------------------------
 // discriminated union (sum type)
 // tohle není enum
 type Weather = Sunny | Cloudy | Rainy
@@ -36,7 +41,24 @@ type Result<'TValue, 'TError> =
 let okValue = Value 5
 let errorValue = Error "oh no"
 
+
+// -----------------------------------
 // record
 type FullName = { First: string; Last: string }
 let name = { First = "Guybrush"; Last = "Threepwood" }
 let elaine = { name with First = "Elaine" }
+
+
+// -----------------------------------
+// units of measure
+[<Measure>] type czk
+[<Measure>] type eur
+
+let price1 = 120<czk>
+let price2 = 10<eur>
+
+// eur/czk
+let divided = price2 / price1
+
+// fail
+// let sum = price1 + price2

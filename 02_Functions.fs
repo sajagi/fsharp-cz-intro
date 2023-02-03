@@ -14,6 +14,8 @@ let x1 = f_int 5 6
 // lambda funkce
 let f_lambda = fun x y -> x + y
 
+
+// -----------------------------------
 // ---- <BRAINFUCK BEGINS> ----
 
 // high-order funkce jsou samozřejmost

@@ -1,4 +1,7 @@
 ﻿module fsharp_demo.CoreLib
+
+
+// -----------------------------------
 // option<'T> ("maybe" monad)
 let none = None
 let some = Some "hello"
@@ -7,6 +10,8 @@ let stringRepr1 = some |> function None -> "none" | Some v -> v
 let stringRepr2_1 = some |> Option.defaultValue "none"
 let stringRepr2_2 = some |> Option.defaultWith (fun () -> failwith "required")
 
+
+// -----------------------------------
 // linked list<'T>
 let xs_0 = [1;2;3]
 let xs_1 = [for i in 1..10 do i]
