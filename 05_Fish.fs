@@ -3,7 +3,7 @@
 // example using fish operator / railway oriented programming
 
 type User = { username: string; active: bool }
-type LoggedInUser = { user: User; unreadMessages: int }
+type LoggedInUser = { user: User; unread_messages: int }
 
 [<AutoOpen>]
 module UserDb =
@@ -12,38 +12,38 @@ module UserDb =
         { username = "elaine"; active = true }
     ]
 
-    let findUser username =
+    let find_user username =
         match users |> List.tryFind (fun u -> u.username = username) with
         | None -> Error "User was not found"
         | Some user -> Ok user
 
-    let loginUser (user:User) =
+    let login_user (user:User) =
         if not user.active then Error "User is not active" else
         // actually log in user here
-        Ok { user = user; unreadMessages = 10 }
+        Ok { user = user; unread_messages = 10 }
 
 // verbose
-let loginByUsername1 username =
-    match findUser username with
+let login_by_username username =
+    match find_user username with
     | Ok user ->
-        match loginUser user with
+        match login_user user with
         | Ok user -> Ok user
         | Error msg -> Error msg
     | Error msg -> Error msg
 
-let loginByUsername2 username =
-    match findUser username with
-    | Ok user -> loginUser user
+let login_by_username' username =
+    match find_user username with
+    | Ok user -> login_user user
     | Error error -> Error error
 
-let loginByUsername3 username =
-    username |> findUser |> Result.bind loginUser
+let login_by_username'' username =
+    username |> find_user |> Result.bind login_user
 
 let (>=>) f1 f2 = f1 >> Result.bind f2
-let loginByUsername4 = UserDb.findUser >=> UserDb.loginUser
+let login_by_username''' = UserDb.find_user >=> UserDb.login_user
 
-let isLoggedIn = loginByUsername4 "elaine"
+let isLoggedIn = login_by_username "elaine"
 
 match isLoggedIn with
-| Ok user -> printfn $"Welcome, {user.user.username}! You have {user.unreadMessages} unread messages!"
+| Ok user -> printfn $"Welcome, {user.user.username}! You have {user.unread_messages} unread messages!"
 | Error msg -> printfn $"An error occured: {msg}"

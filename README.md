@@ -1,0 +1,1 @@
+# Stručný úvod do F# pro C# vývojáře
