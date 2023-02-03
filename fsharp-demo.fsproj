@@ -11,8 +11,9 @@
         <Compile Include="02_Functions.fs" />
         <Compile Include="03_Matching.fs" />
         <Compile Include="04_CoreLib.fs" />
-        <Compile Include="Program.fs" />
+        <Compile Include="05_Fish.fs" />
         <Compile Include="99_Bonus.fs" />
+        <Compile Include="Program.fs" />
     </ItemGroup>
 
 </Project>
