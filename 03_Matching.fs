@@ -2,6 +2,16 @@
 open System
 open System.Text.RegularExpressions
 
+// C# switch statement example
+// switch(e) {
+//  case Enum.Foo: VoidFunkce("Foo"); break;
+//  case Enum.Bar: VoidFunkce("Bar"); break;
+// }
+
+// C# switch expression example
+// var x = s switch { "a" => 1, "b" => 2, _ => 0; }
+
+
 // list matching
 module m1 =
     let list_description xs =
