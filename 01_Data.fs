@@ -1,5 +1,7 @@
 ﻿module fsharp_demo.Values
 
+// FSharp = Data + Functions
+
 module m1 =
     // přiřazení hodnoty k identifikátoru (ale stejně tomu říkám "proměnná"), imutabilita
     let (x:int) = 5

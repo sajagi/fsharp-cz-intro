@@ -4,19 +4,23 @@ open System
 
 // funkce
 module m1 =
-
-    // každá funkce má alespoň jeden parametr a má vždy návratovou hodnotu...
     let add x y = x + y
-
-    // ...i kdyby to měl být unit ()
-    let hello () = printfn "hello!"
 
     // volání funkce bez () (() je unit / tuple)
     let res = add 5 6
 
+    // unit je ne až tak speciální typ hodnoty// každá funkce má alespoň jeden parametr a má vždy návratovou hodnotu
+    let u = ()
+
+    // funkce bez parametrů / bez návratové hodnoty používá unit ()
+    let hello () = printfn "hello!"
+
     // lambda funkce
     let add' = fun x y -> x + y
 
+    let add'' =
+        let f x y = x + y
+        f
 
 
 // higher-order funkce
@@ -35,6 +39,7 @@ module m2 =
 // operátory |> a >>
 module m3 =
     let sin, cos, tan = Math.Sin, Math.Cos, Math.Tan
+
     // :(
     let calc x = tan (cos (sin x))
 
