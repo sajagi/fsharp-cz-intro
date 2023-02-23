@@ -1,6 +1,9 @@
-# Stručný úvod do F# pro C# vývojáře:
+# Stručný úvod do F# pro C# vývojáře
 
-bonus:
+Podkladový materiál pro prezentaci, cca 2 hodiny
 
-ROP: https://image.slidesharecdn.com/railway-oriented-programming-slideshare-140312155941-phpapp01/95/railway-oriented-programming-151-638.jpg?cb=1427456657
-giraffe: https://twitter.com/slaveoftime1/status/1626467078541647874/photo/1
+* [Kapitola 1 - Data](01_Data.fs)
+* [Kapitola 2 - Funkce](02_Functions.fs)
+* [Kapitola 3 - Pattern matching](03_Matching.fs)
+* [Kapitola 4 - Střípky ze standardní knihovny](04_CoreLib.fs)
+* [Kapitola 5 - Vše dohromady, fish operátor](05_Fish.fs)
