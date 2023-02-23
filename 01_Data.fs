@@ -1,6 +1,6 @@
 ﻿module fsharp_demo.Values
 
-// FSharp = Data + Functions
+// FSharp = data a funkce
 
 module m1 =
     // přiřazení hodnoty k identifikátoru (ale stejně tomu říkám "proměnná"), imutabilita
@@ -14,9 +14,9 @@ module m1 =
 
     // imutabilní, ale dá se předefinovat (uvnitř funkce)
     let f() =
-        let x = 5
-        let x = "hello"
-        printfn $"{x}" // hello
+        let input = "Hello world!  "
+        let input = input.Trim()
+        printfn $"{input}"
 
     let ``😀 i toto je identifikátor`` = ()
 
@@ -34,6 +34,9 @@ module m2 =
     // IEnumerable<'T>
     let sequence = seq { 1;2;3 }
 
+    // unit
+    let unit = ()
+
     // lazy, map, ...
 
 
@@ -44,10 +47,12 @@ module m3 =
     type Weather = Sunny | Cloudy | Rainy
     let w = Cloudy
 
-    // i generické, s hodnotami
-    type Result<'TValue, 'TError> =
-    | Value of 'TValue
-    | Error of 'TError
+    // mohou mít na sobě zavěšené i data
+    type Temperature = Celsius of int | Fahrenheit of int
+    let t = Celsius 20
+
+    // mohou být i generické
+    type Result<'TValue, 'TError> = Value of 'TValue | Error of 'TError
 
     let okValue = Value 5
     let errorValue = Error "oh no"

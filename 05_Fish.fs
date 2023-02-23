@@ -22,7 +22,7 @@ module UserDb =
         // actually log in user here
         Ok { user = user; unread_messages = 10 }
 
-// verbose
+// zaloguj uživatele podle jeho jména, pokud neexistuje nebo není aktivní, vrať chybu
 let login_by_username username =
     match find_user username with
     | Ok user ->
@@ -31,19 +31,22 @@ let login_by_username username =
         | Error msg -> Error msg
     | Error msg -> Error msg
 
+
+// předchozí funkce zkráceně
 let login_by_username' username =
     match find_user username with
     | Ok user -> login_user user
     | Error error -> Error error
 
+// pomocí Result.bind
 let login_by_username'' username =
     username |> find_user |> Result.bind login_user
 
+// pomocí fish (Kleisli) operátoru
 let (>=>) f1 f2 = f1 >> Result.bind f2
+
 let login_by_username''' = UserDb.find_user >=> UserDb.login_user
 
-let isLoggedIn = login_by_username "elaine"
-
-match isLoggedIn with
+match login_by_username''' "elaine" with
 | Ok user -> printfn $"Welcome, {user.user.username}! You have {user.unread_messages} unread messages!"
 | Error msg -> printfn $"An error occured: {msg}"

@@ -6,11 +6,8 @@ open System
 module m1 =
     let add x y = x + y
 
-    // volání funkce bez () (() je unit / tuple)
+    // volání funkce bez ()
     let res = add 5 6
-
-    // unit je ne až tak speciální typ hodnoty// každá funkce má alespoň jeden parametr a má vždy návratovou hodnotu
-    let u = ()
 
     // funkce bez parametrů / bez návratové hodnoty používá unit ()
     let hello () = printfn "hello!"
@@ -38,26 +35,60 @@ module m2 =
 
 // operátory |> a >>
 module m3 =
-    let sin, cos, tan = Math.Sin, Math.Cos, Math.Tan
+    let f() =
+        let sin, cos, tan = Math.Sin, Math.Cos, Math.Tan
 
-    // :(
-    let calc x = tan (cos (sin x))
+        // :(
+        let calc x = tan (cos (sin x))
 
-    // :)
-    // |> pipe operátor
-    // let (|>) x f = f x
-    let calc' x = x |> sin |> cos |> tan
+        let pipe x f = f x
 
-    // :)))
-    // >> composition operátor
-    // let (>>) f1 f2 = fun x -> f1 x |> f2
-    let calc'' = sin >> cos >> tan
+        let sin x = pipe x sin
+        let cos x = pipe x cos
+        let tan x = pipe x tan
+
+        // moc jsme si nepomohli
+        let calc x = pipe (pipe (pipe x sin) cos) tan
+
+        // ale binární operátory jsou infixové! zkusme to tedy přepsat
+        let (|>) x f = f x
+
+        // takže...
+        let sin x = (|>) x sin
+
+        // ...se dá ekvivaltentně zapsat jako
+        let sin x = x |> sin
+
+        // tedy původní zápis můžeme upravit na
+        let calc x = (|>) ((|>) ((|>) x sin) cos) tan
+        let calc x = (|>) ((|>) (x |> sin) cos) tan
+        let calc x = (|>) ((x |> sin) |> cos) tan
+        let calc x = ((x |> sin) |> cos) |> tan
+
+        // po odstranění závorek už to vypadá hezky!
+        let calc x = x |> sin |> cos |> tan
+
+        // dobrá zpráva - |> je zabudovaný operátor!
+
+
+
+        // :)))
+        // >> composition operátor
+        // let (>>) f1 f2 = fun x -> x |> f1 |> f2
+        let calc = sin >> cos >> tan
+        ()
 
 module m4 =
+    open Microsoft.Extensions.FileSystemGlobbing
+
     // vlastní operátory
     let (@) x y = System.IO.Path.Combine(x, y)
     let path = Environment.CurrentDirectory @ "foo.txt"
 
-    // go wild
-    let (|<><><>|) x y = $"{x} <><><> {y}"
-    let hello_world = "hello" |<><><>| "world"
+
+    // disclaimer - nezkoušeno
+    let (!!) (glob:string) = Matcher().AddInclude(glob)
+    let (++) (files:Matcher) glob = files.AddInclude(glob)
+    let (--) (files:Matcher) glob = files.AddExclude(glob)
+
+    let files = !! "**/*.fs" ++ "**/*.fsx" -- "**/packages/**"

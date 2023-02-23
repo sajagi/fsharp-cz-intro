@@ -1,15 +1,22 @@
 ﻿module fsharp_demo.Matching
-open System
 open System.Text.RegularExpressions
 
-// C# switch statement example
-// switch(e) {
-//  case Enum.Foo: VoidFunkce("Foo"); break;
-//  case Enum.Bar: VoidFunkce("Bar"); break;
+// C# switch statement
+// kompilátor si nebude stěžovat, že nejsou všechny možnosti zahrnuty
+
+// switch(weatcher) {
+//   case Weather.Sunny:
+//     Console.WriteLine(":)");
+//     break;
+//   case Weather.Cloudy:
+//     Console.WriteLine(":(");
+//     break;
 // }
 
-// C# switch expression example
-// var x = s switch { "a" => 1, "b" => 2, _ => 0; }
+// C# switch expression
+// neumí bloky kódu, pouze výrazy :(
+
+// string repr = weather switch { Weather.Sunny => ":)", Weather.Cloudy => ":(", _ => "?"; }
 
 
 // list matching
@@ -32,8 +39,6 @@ module m2 =
         | Cloudy -> ":|"
         | Sunny -> ":)"
         | Rainy -> ":("
-
-    let weather_icon' = function Cloudy -> ":|" | Sunny -> ":)" | Rainy -> ":("
 
 // vlastní pattern matching
 module m3 =
